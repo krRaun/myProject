@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+  body
+  {
+  padding: 10px 50px;
+  }
+  .container
+  {
+   font-size:20px;
+  }
+  .container input
+  {
+    width:50%;
+	padding:10px 20px;
+	border:1px solid blue;
+	margin:1px;
+	font-size:15px;
+  }
+  #submission
+  {
+   font-size:18px;
+   padding:7px;
+   color:red;
+   background-color:navyblue;
+   
+  }
+  </style>
+  <script>
+   function validation()
+	{
+		var users=document.getElementById('username').value
+		var psds=document.getElementById('password').value
+		var psdcm=document.getElementById('confirm password').value
+		var mail=document.getElementById('email').value
+		var number=document.getElementById('mobileno').value
+		var usercheck=/^[A-Za-z. ]{3,30}$/;
+		var passwordcheck=/^(?=.*[0-9])(?=.[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+		var emailcheck =/^[A-Za-z_]{3,}@[A-Za-z{3,}[.]{1}[A-Za-z.]{2,6}$]/;
+		var mobilecheck =/^[789][0-9]{9}/;
+		if (usercheck.test(users))
+		{
+			document.getElementById('user').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('user').innerHTML="** Username is invalid."; 
+			return false;
+		}
+		if (passwordcheck.test(psds))
+		{
+			document.getElementById('passwrd').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('passwrd').innerHTML="** pasword is invalid."; 
+			return false;
+		}
+		if (psdcm.match(psds))
+		{
+			document.getElementById('cmpswd').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('cmpswd').innerHTML="** password is not matching."; 
+			return false;
+		}
+		if (emailcheck.test(mail))
+		{
+			document.getElementById('emails').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('emails').innerHTML="** mail is invalid."; 
+			return false;
+		}
+		if (mobilecheck.test(number))
+		{
+			document.getElementById('mobile').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('mobile').innerHTML="** Mobileno is invalid."; 
+			return false;
+		}
+		
+	}
+</script>
+ </head>
+ <body>
+ <h1 style="text-align:center;color:red;"> Javascript Form Validation</h1>
+  <form onsubmit='return validation()'>
+  <div class="container">
+	UserName: <br><input type='text'id='username'value=""><div style = "color:red"id ='user'></div></div>
+	<div class="container">
+	Password: <br><input type='text'id='password'value=""><div style = "color:red"id ='passwrd'></div></div>
+	<div class="container">
+	Confirm Password <br><input type='text'id='confirm password'value=""><div style = "color:red"id ='cmpswd'> </div></div>
+	<div class="container">
+	Email: <br><input type='text'id='email'value=""><div style = "color:red"id ='emails'></div></div>
+	<div class="container">
+	Mobile Number: <br><input type='text'id='mobileno'value=""><div style = "color:red"id ='mobile'> </div></div><br>
+	<input type="Submit"id="submission"value="Submit">
+	</div>
+  </form>
+ </body>
+</html>

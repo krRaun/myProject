@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+ <script>
+	function myfun()
+	{
+		//DOM:-Concept of document object Module.
+		var a = document.getElementById("mobileno").value;
+		if (a=="")
+		{
+			document.getElementById("messages").innerHTML="** Please fill Mobile Number.";
+			return false;
+		}
+		//taking only digits.
+		if (isNaN(a))
+		{
+           document.getElementById("messages").innerHTML="** enter only Numeric value.";
+		   return false;
+		}
+		if (a.length<10)
+		{
+			document.getElementById("messages").innerHTML="** Mobileno must be 10 digits.";
+			return false;
+		}
+		if (a.length>10)
+		{
+			document.getElementById("messages").innerHTML="** Mobileno must be 10 digits.";
+			return false;
+		}
+		if ((a.charAt(0)!=9)&&(a.charAt(0)!=8)&&(a.charAt(0)!=7))
+		{
+			document.getElementById("messages").innerHTML="** Mobileno must be starts with 9,8,7";
+			return false;
+
+		}
+	}
+ </script>
+    <h1 style ="color:green;text-align:center;">Mobile Validation in javascript</h1>
+	<form onsubmit="return myfun()">
+		Mobile No <input type='text'id=mobileno value="">
+		<span id="messages"style=color:red;><span><br></br>
+		<input type="Submit" value="Submit">
+	</form>
+ </body>
+</html>

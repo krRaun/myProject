@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    table,td {
+      background-color:burlywood;
+      border: 1px solid black;
+      border-color: blue;
+      padding: 3px;   
+    }
+  </style>
+  <script>
+    var cell1;
+    var cell2;
+    var cell3;
+    var cell4;
+    var cell5;
+    var cell6;
+    var cell7;
+    var x;
+    var tableId = 0;
+    function myFunction() {
+     /* var onsubmit= validation()*/ 
+     //var serialNo =1;
+      var table = document.getElementById("myTable");
+      var row = table.insertRow(-1);
+      row.id = tableId++;
+      cell1 = row.insertCell();
+      cell2 = row.insertCell();
+      cell3 = row.insertCell();
+      cell4 = row.insertCell();
+      cell5 = row.insertCell();
+      cell6 = row.insertCell();
+      cell7 = row.insertCell();
+      var serialNo = cell1.innerHTML ="<input type='text' id='post1'placeholder='enter the serialNo.'></input><br><span id='serialid'style = 'color:red'></span>"
+      var PhoneNo = cell2.innerHTML = "<input  id='post2'placeholder='enter the phoneNo' type='number'></input><br><span id='messages'style='color:red'></span>"
+      var Company = cell3.innerHTML = "<input id='post3' placeholder='enter the company'></input><br><span id='cmpid'style = 'color:red'></span>"
+      var Country = cell4.innerHTML = "<Select name='slct1' id='post4'><option value=''>--Choose Option--</option><option value='india'>India</option><option value='Switzerland'>Switzerland</option><option value='Turkey'>Turkey</option><option value='america'>America</option><option value='SriLanka'>SriLanka</option><option value='brazil'>Brazil</option><option value='maldives'>Maldives</option><option value='canada'>Canada</option></select><br><span id='cntryid'style = 'color:red'></span>"
+      var Address = cell5.innerHTML = "<input id='post5'placeholder='enter the address'></input><br><span id='adrsid'style = 'color:red'></span>"
+      var save = cell6.innerHTML = "<input onclick='mysave()'type='button' value='Save' id='save_button'></input></form>";
+      var del = cell7.innerHTML = `<input onclick='mydlt(this)' type='button' value='Delete' id='post7'></input>`;
+      document.getElementById("post1").defaultValue="";
+      document.getElementById("post2").defaultValue="";
+      document.getElementById("post3").defaultValue="";
+      document.getElementById("post4").defaultValue="";
+      document.getElementById("post5").defaultValue="";
+     // serialNo++;
+     document.getElementById("addbtn").disabled = true;
+    }
+  
+	  
+    function mydlt(delId)
+    {
+      var table = document.getElementById("myTable"); 
+      var i=delId.parentNode.parentNode;
+       console.log(i);
+      //var row=table.deleteRow(-1);
+      table.childNodes[1].removeChild(i)
+
+
+    }
+   function myedit(editId)
+    {
+     
+      //document.getElementById("edit_button");
+     //var i=editId.parentNode.parentNode;
+      //console.log('inside my edit i',i)
+      //var table1= document.getElementById("myTable"); 
+      var serial_no = editId.parentNode.parentNode.children[0].innerHTML; 
+      var phone_num = editId.parentNode.parentNode.children[1].innerHTML; 
+      var Company_name = editId.parentNode.parentNode.children[2].innerHTML;
+      var Country_name = editId.parentNode.parentNode.children[3].innerHTML;  
+      var Address_name = editId.parentNode.parentNode.children[4].innerHTML;  
+      //console.log(serial_no,phone_num,Company_name,Country_name,Address_name ,editId.rowId1);
+ 
+
+      cell1.innerHTML="<input type='text' id='post1'" +serial_no+ "' value='" +serial_no +"'>";
+      cell2.innerHTML="<input type='text' id='post2'" +phone_num+ "' value='" +phone_num+"'>";
+      cell3.innerHTML="<input type='text' id='post3'" +Company_name+ "' value='" +Company_name+"'>";
+      cell4.innerHTML="<input type='text' id='post4'" +Country_name+ "' value='" +Country_name +"'>";
+      cell5.innerHTML="<input type='text' id='post5'" +Address_name+ "' value='" +Address_name +"'>";	
+      cell6.innerHTML = `<input onclick='mysave()'type='button' value='Save' id ='save_button'></input>`;      
+    }
+   
+      
+      
+    function mysave() {
+    if(validation())
+    {
+      a = document.getElementById('post1').value;
+      a1 = document.getElementById('post2').value;
+      a2 = document.getElementById('post3').value;
+      a3 = document.getElementById('post4').value;
+      a4 = document.getElementById('post5').value;
+      //var rowId1=document.getElementById('tableId');
+      cell1.innerHTML = a;
+      cell2.innerHTML = a1;
+      cell3.innerHTML = a2;
+      cell4.innerHTML = a3;
+      cell5.innerHTML = a4;
+       cell6.innerHTML = `<input onclick='myedit(this)'type='button' value='Edit' 
+       id ='edit_button'></input>`;
+       document.getElementById("addbtn").disabled = false;
+    }
+  }
+    
+  
+    function validation()
+	{
+    var return_validity=true;
+    var b=document.getElementById('post1').value
+		var b1=document.getElementById('post2').value
+		var b2=document.getElementById('post3').value
+		var b3=document.getElementById('post4').value
+		var b4=document.getElementById('post5').value
+    var phonecheck =/^[789][0-9]{9}/;
+    if (b!='')
+		{
+      document.getElementById('serialid').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('serialid').innerHTML="** Please fill the Serial no."; 
+			return_validity=false;
+  	}
+    if (phonecheck.test(b1))
+    {
+			document.getElementById('messages').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('messages').innerHTML="** pleae fill phone no."; 
+      return_validity=false;
+  	}
+    if (b2!='')
+		{
+			document.getElementById('cmpid').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('cmpid').innerHTML="** Company is invalid."; 
+      return_validity=false;
+  	}
+    if (b3!='')
+		{
+			document.getElementById('cntryid').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('cntryid').innerHTML="** Please select choose option."; 
+			return_validity=false;
+  	}
+    if (b4!='')
+		{
+			document.getElementById('adrsid').innerHTML=" ";
+		}
+		else
+		{
+			document.getElementById('adrsid').innerHTML="** Address is invalid."; 
+      return_validity=false;
+  	}
+    return return_validity;
+  }
+
+  </script>
+</head>
+
+<body>
+  <p>this is a paragraph.</p>
+  <br>
+  <button type="button" onclick="myFunction()" id='addbtn'><b>Add<b></button>
+  <style>
+    #myTable {
+      color: rgb(209, 37, 37);
+      font-size: large;
+
+    }
+  </style>
+  <table id="myTable" class="col" width="100%">
+    <tr>
+      <td><b>Serial No.</b></td>
+      <td><b>PhoneNo</b></td>
+      <td><b>Company</b></td>
+      <td><b>Country</b></td>
+      <td><b>Address</b></td>
+      <td><b>Save</b></td>
+      <td><b>Delete</b></td>
+    
+    
+    </tr>
+
+  </table>
+
+
+
+</body>
+
+</html>
